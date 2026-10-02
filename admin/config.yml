@@ -1,0 +1,153 @@
+# yaml-language-server: $schema=https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json
+
+backend:
+  name: github
+  repo: luciabaldebenito23-cloud/lucia-web-cms-test
+  branch: main
+  base_url: https://sveltia-cms-auth.luciabaldebenito23.workers.dev
+
+media_folder: "img/uploads"
+public_folder: "/img/uploads"
+
+site_url: "https://luciabaldebenito23-cloud.github.io/lucia-web-cms-test"
+
+editor:
+  preview: false
+
+collections:
+  - name: "propiedades"
+    label: "Propiedades"
+    label_singular: "Propiedad"
+    folder: "src/content/propiedades"
+    create: true
+    delete: true
+    slug: "{{fields.slug}}"
+    identifier_field: title
+    summary: "{{title}} - {{operacion}}"
+    fields:
+      - { name: "slug", label: "Identificador (para la URL)", widget: "string" }
+      - { name: "orden", label: "Orden en la grilla", widget: "number", default: 10 }
+      - { name: "title", label: "Titulo de la propiedad", widget: "string" }
+      - { name: "seo_description", label: "Descripcion para buscadores (SEO)", widget: "text", required: false }
+      - name: "operacion"
+        label: "Operacion"
+        widget: "select"
+        options:
+          - { label: "Venta", value: "venta" }
+          - { label: "Alquiler", value: "alquiler" }
+          - { label: "Emprendimiento", value: "emprendimiento" }
+      - name: "tipo"
+        label: "Tipo de propiedad"
+        widget: "select"
+        options:
+          - { label: "Casa", value: "casa" }
+          - { label: "Departamento", value: "departamento" }
+          - { label: "Terreno", value: "terreno" }
+          - { label: "Local / oficina", value: "local" }
+          - { label: "Galpon", value: "galpon" }
+      - { name: "ciudad", label: "Ciudad", widget: "string" }
+      - { name: "barrio", label: "Barrio", widget: "string" }
+      - { name: "direccion", label: "Direccion completa", widget: "string" }
+      - { name: "precio", label: "Precio", widget: "number", value_type: "int" }
+      - name: "moneda"
+        label: "Moneda"
+        widget: "select"
+        options: [ "USD", "ARS" ]
+        default: "USD"
+      - { name: "precio_sufijo", label: "Aclaracion del precio", widget: "string", required: false }
+      - { name: "destacada", label: "Mostrar en Destacadas (portada)", widget: "boolean", default: false }
+      - name: "estado"
+        label: "Estado"
+        widget: "select"
+        required: false
+        options:
+          - { label: "Disponible", value: "disponible" }
+          - { label: "Reservada", value: "reservado" }
+          - { label: "Vendida", value: "vendido" }
+          - { label: "Alquilada", value: "alquilado" }
+      - name: "apta_credito"
+        label: "Apta credito"
+        widget: "select"
+        required: false
+        options:
+          - { label: "Si", value: "si" }
+          - { label: "No", value: "no" }
+      - name: "meta"
+        label: "Datos rapidos"
+        widget: "list"
+        field: { name: "item", label: "Dato", widget: "string" }
+      - name: "fotos"
+        label: "Fotos"
+        widget: "list"
+        summary: "{{fields.foto}}"
+        field: { name: "foto", label: "Foto", widget: "image" }
+      - { name: "foto_alt", label: "Texto alternativo de la foto principal", widget: "string" }
+      - name: "specs"
+        label: "Ficha tecnica"
+        widget: "list"
+        summary: "{{fields.label}}: {{fields.value}}"
+        field:
+          - { name: "label", label: "Etiqueta", widget: "string" }
+          - { name: "value", label: "Valor", widget: "string" }
+      - name: "servicios"
+        label: "Servicios disponibles"
+        widget: "list"
+        field: { name: "item", label: "Servicio", widget: "string" }
+      - { name: "servicios_nota", label: "Aclaracion sobre servicios", widget: "text", required: false }
+      - { name: "mapa_query", label: "Direccion para el mapa de Google", widget: "string", required: false }
+      - { name: "cta_titulo", label: "Titulo del bloque de contacto", widget: "string", required: false }
+      - { name: "cta_texto", label: "Texto del bloque de contacto", widget: "text", required: false }
+      - { name: "cta_boton", label: "Texto del boton de contacto", widget: "string", required: false }
+      - { name: "body", label: "Descripcion completa", widget: "markdown" }
+
+  - name: "blog"
+    label: "Blog"
+    label_singular: "Nota"
+    folder: "src/content/blog"
+    create: true
+    delete: true
+    slug: "{{fields.slug}}"
+    identifier_field: title
+    fields:
+      - { name: "slug", label: "Identificador (para la URL)", widget: "string" }
+      - { name: "orden", label: "Orden", widget: "number", default: 10 }
+      - { name: "title", label: "Titulo de la nota", widget: "string" }
+      - { name: "seo_titulo", label: "Titulo corto para buscadores", widget: "string", required: false }
+      - { name: "card_titulo", label: "Titulo corto para la tarjeta", widget: "string", required: false }
+      - { name: "seo_description", label: "Descripcion para buscadores (SEO)", widget: "text", required: false }
+      - { name: "categoria", label: "Categoria", widget: "string" }
+      - name: "eyebrow_color"
+        label: "Color de la etiqueta de categoria"
+        widget: "select"
+        options: [ "purple", "turquoise", "navy" ]
+        default: "purple"
+      - { name: "autor", label: "Autor/a", widget: "string", default: "Lucia Baldebenito" }
+      - { name: "lectura", label: "Tiempo de lectura", widget: "string" }
+      - { name: "resumen", label: "Resumen", widget: "text" }
+      - { name: "portada", label: "Foto de portada", widget: "image" }
+      - { name: "portada_alt", label: "Texto alternativo de la portada", widget: "string" }
+      - { name: "hero_alt", label: "Texto alternativo de la imagen grande", widget: "string", required: false }
+      - { name: "cta_titulo", label: "Titulo del bloque de contacto", widget: "string", required: false }
+      - { name: "cta_texto", label: "Texto del bloque de contacto", widget: "text", required: false }
+      - { name: "cta_link", label: "Link del boton de contacto", widget: "string", required: false, default: "/#tasaciones" }
+      - { name: "cta_boton", label: "Texto del boton de contacto", widget: "string", required: false }
+      - { name: "cta_clase", label: "Estilo del boton", widget: "select", options: ["btn-primary", "btn-outline"], required: false, default: "btn-primary" }
+      - { name: "author_photo", label: "Foto del autor/a", widget: "image", required: false }
+      - { name: "author_name", label: "Nombre del autor/a", widget: "string", default: "Lucia Baldebenito" }
+      - { name: "author_role", label: "Rol del autor/a", widget: "string", required: false }
+      - { name: "body", label: "Contenido de la nota", widget: "markdown" }
+
+  - name: "faq"
+    label: "Preguntas frecuentes"
+    files:
+      - name: "preguntas_frecuentes"
+        label: "Preguntas frecuentes"
+        file: "src/_data/faq.json"
+        fields:
+          - name: "preguntas"
+            label: "Preguntas"
+            widget: "list"
+            summary: "{{fields.pregunta}}"
+            field:
+              - { name: "pregunta", label: "Pregunta", widget: "string" }
+              - { name: "respuesta", label: "Respuesta", widget: "text" }
