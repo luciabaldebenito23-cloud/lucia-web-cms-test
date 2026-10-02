@@ -23,14 +23,14 @@ collections:
     delete: true
     slug: "{{fields.slug}}"
     identifier_field: title
-    summary: "{{title}} - {{operacion}}"
+    summary: "{{title}} — {{operacion}}"
     fields:
-      - { name: "slug", label: "Identificador (para la URL)", widget: "string" }
-      - { name: "orden", label: "Orden en la grilla", widget: "number", default: 10 }
-      - { name: "title", label: "Titulo de la propiedad", widget: "string" }
-      - { name: "seo_description", label: "Descripcion para buscadores (SEO)", widget: "text", required: false }
+      - { name: "slug", label: "Identificador (para la URL)", widget: "string", hint: "Sin espacios ni tildes. Ej: casa-en-venta-km3. No lo cambies después de publicado o se rompe el link." }
+      - { name: "orden", label: "Orden en la grilla", widget: "number", default: 10, hint: "Los números más chicos aparecen primero." }
+      - { name: "title", label: "Título de la propiedad", widget: "string" }
+      - { name: "seo_description", label: "Descripción para buscadores (SEO)", widget: "text", required: false }
       - name: "operacion"
-        label: "Operacion"
+        label: "Operación"
         widget: "select"
         options:
           - { label: "Venta", value: "venta" }
@@ -44,17 +44,17 @@ collections:
           - { label: "Departamento", value: "departamento" }
           - { label: "Terreno", value: "terreno" }
           - { label: "Local / oficina", value: "local" }
-          - { label: "Galpon", value: "galpon" }
+          - { label: "Galpón", value: "galpon" }
       - { name: "ciudad", label: "Ciudad", widget: "string" }
       - { name: "barrio", label: "Barrio", widget: "string" }
-      - { name: "direccion", label: "Direccion completa", widget: "string" }
+      - { name: "direccion", label: "Dirección completa", widget: "string" }
       - { name: "precio", label: "Precio", widget: "number", value_type: "int" }
       - name: "moneda"
         label: "Moneda"
         widget: "select"
         options: [ "USD", "ARS" ]
         default: "USD"
-      - { name: "precio_sufijo", label: "Aclaracion del precio", widget: "string", required: false }
+      - { name: "precio_sufijo", label: "Aclaración del precio", widget: "string", required: false, hint: "Ej: + gastos / por mes" }
       - { name: "destacada", label: "Mostrar en Destacadas (portada)", widget: "boolean", default: false }
       - name: "estado"
         label: "Estado"
@@ -66,39 +66,40 @@ collections:
           - { label: "Vendida", value: "vendido" }
           - { label: "Alquilada", value: "alquilado" }
       - name: "apta_credito"
-        label: "Apta credito"
+        label: "Apta crédito"
         widget: "select"
         required: false
         options:
-          - { label: "Si", value: "si" }
+          - { label: "Sí", value: "si" }
           - { label: "No", value: "no" }
       - name: "meta"
-        label: "Datos rapidos"
+        label: "Datos rápidos (se muestran en la tarjeta)"
         widget: "list"
+        hint: "Ej: 399,83 m² / Orientación sur / Con container incluido"
         field: { name: "item", label: "Dato", widget: "string" }
       - name: "fotos"
         label: "Fotos"
         widget: "list"
         summary: "{{fields.foto}}"
         field: { name: "foto", label: "Foto", widget: "image" }
-      - { name: "foto_alt", label: "Texto alternativo de la foto principal", widget: "string" }
+      - { name: "foto_alt", label: "Texto alternativo de la foto principal", widget: "string", hint: "Describí la foto para accesibilidad y buscadores." }
       - name: "specs"
-        label: "Ficha tecnica"
+        label: "Ficha técnica"
         widget: "list"
         summary: "{{fields.label}}: {{fields.value}}"
-        field:
+        fields:
           - { name: "label", label: "Etiqueta", widget: "string" }
           - { name: "value", label: "Valor", widget: "string" }
       - name: "servicios"
         label: "Servicios disponibles"
         widget: "list"
         field: { name: "item", label: "Servicio", widget: "string" }
-      - { name: "servicios_nota", label: "Aclaracion sobre servicios", widget: "text", required: false }
-      - { name: "mapa_query", label: "Direccion para el mapa de Google", widget: "string", required: false }
-      - { name: "cta_titulo", label: "Titulo del bloque de contacto", widget: "string", required: false }
-      - { name: "cta_texto", label: "Texto del bloque de contacto", widget: "text", required: false }
-      - { name: "cta_boton", label: "Texto del boton de contacto", widget: "string", required: false }
-      - { name: "body", label: "Descripcion completa", widget: "markdown" }
+      - { name: "servicios_nota", label: "Aclaración sobre servicios", widget: "text", required: false }
+      - { name: "mapa_query", label: "Dirección para el mapa de Google", widget: "string", required: false }
+      - { name: "cta_titulo", label: "Título del bloque de contacto (opcional)", widget: "string", required: false }
+      - { name: "cta_texto", label: "Texto del bloque de contacto (opcional)", widget: "text", required: false }
+      - { name: "cta_boton", label: "Texto del botón de contacto (opcional)", widget: "string", required: false }
+      - { name: "body", label: "Descripción completa", widget: "markdown" }
 
   - name: "blog"
     label: "Blog"
@@ -109,31 +110,31 @@ collections:
     slug: "{{fields.slug}}"
     identifier_field: title
     fields:
-      - { name: "slug", label: "Identificador (para la URL)", widget: "string" }
-      - { name: "orden", label: "Orden", widget: "number", default: 10 }
-      - { name: "title", label: "Titulo de la nota", widget: "string" }
-      - { name: "seo_titulo", label: "Titulo corto para buscadores", widget: "string", required: false }
-      - { name: "card_titulo", label: "Titulo corto para la tarjeta", widget: "string", required: false }
-      - { name: "seo_description", label: "Descripcion para buscadores (SEO)", widget: "text", required: false }
-      - { name: "categoria", label: "Categoria", widget: "string" }
+      - { name: "slug", label: "Identificador (para la URL)", widget: "string", hint: "Sin espacios ni tildes. No lo cambies después de publicado o se rompe el link." }
+      - { name: "orden", label: "Orden", widget: "number", default: 10, hint: "Los números más chicos aparecen primero en el blog." }
+      - { name: "title", label: "Título de la nota (encabezado dentro del artículo)", widget: "string" }
+      - { name: "seo_titulo", label: "Título corto para buscadores (opcional)", widget: "string", required: false, hint: "Si lo dejás vacío, se usa el título de arriba. Usalo solo si el título es muy largo para el buscador." }
+      - { name: "card_titulo", label: "Título corto para la tarjeta (opcional)", widget: "string", required: false, hint: "El que se ve en la grilla del blog y en 'Seguí leyendo'. Si lo dejás vacío, se usa el título de arriba." }
+      - { name: "seo_description", label: "Descripción para buscadores (SEO)", widget: "text", required: false }
+      - { name: "categoria", label: "Categoría", widget: "string", hint: "Ej: Nota para propietarios / Nota técnica / LB Consultora" }
       - name: "eyebrow_color"
-        label: "Color de la etiqueta de categoria"
+        label: "Color de la etiqueta de categoría"
         widget: "select"
         options: [ "purple", "turquoise", "navy" ]
         default: "purple"
-      - { name: "autor", label: "Autor/a", widget: "string", default: "Lucia Baldebenito" }
-      - { name: "lectura", label: "Tiempo de lectura", widget: "string" }
-      - { name: "resumen", label: "Resumen", widget: "text" }
+      - { name: "autor", label: "Autor/a", widget: "string", default: "Lucía Baldebenito" }
+      - { name: "lectura", label: "Tiempo de lectura", widget: "string", hint: "Ej: 4 min" }
+      - { name: "resumen", label: "Resumen (se muestra en la tarjeta)", widget: "text" }
       - { name: "portada", label: "Foto de portada", widget: "image" }
       - { name: "portada_alt", label: "Texto alternativo de la portada", widget: "string" }
       - { name: "hero_alt", label: "Texto alternativo de la imagen grande", widget: "string", required: false }
-      - { name: "cta_titulo", label: "Titulo del bloque de contacto", widget: "string", required: false }
+      - { name: "cta_titulo", label: "Título del bloque de contacto", widget: "string", required: false }
       - { name: "cta_texto", label: "Texto del bloque de contacto", widget: "text", required: false }
-      - { name: "cta_link", label: "Link del boton de contacto", widget: "string", required: false, default: "/#tasaciones" }
-      - { name: "cta_boton", label: "Texto del boton de contacto", widget: "string", required: false }
-      - { name: "cta_clase", label: "Estilo del boton", widget: "select", options: ["btn-primary", "btn-outline"], required: false, default: "btn-primary" }
+      - { name: "cta_link", label: "Link del botón de contacto", widget: "string", required: false, default: "/#tasaciones" }
+      - { name: "cta_boton", label: "Texto del botón de contacto", widget: "string", required: false }
+      - { name: "cta_clase", label: "Estilo del botón", widget: "select", options: ["btn-primary", "btn-outline"], required: false, default: "btn-primary" }
       - { name: "author_photo", label: "Foto del autor/a", widget: "image", required: false }
-      - { name: "author_name", label: "Nombre del autor/a", widget: "string", default: "Lucia Baldebenito" }
+      - { name: "author_name", label: "Nombre del autor/a", widget: "string", default: "Lucía Baldebenito" }
       - { name: "author_role", label: "Rol del autor/a", widget: "string", required: false }
       - { name: "body", label: "Contenido de la nota", widget: "markdown" }
 
@@ -141,13 +142,14 @@ collections:
     label: "Preguntas frecuentes"
     files:
       - name: "preguntas_frecuentes"
-        label: "Preguntas frecuentes"
+        label: "Preguntas frecuentes (sección del inicio)"
         file: "src/_data/faq.json"
+        description: "Estas preguntas se muestran en el sitio Y en el código invisible que ayuda a que los buscadores (Google, ChatGPT, etc.) citen bien tu información. Si cambiás una respuesta acá, cambia en los dos lugares a la vez — así nunca quedan desincronizadas."
         fields:
           - name: "preguntas"
             label: "Preguntas"
             widget: "list"
             summary: "{{fields.pregunta}}"
-            field:
+            fields:
               - { name: "pregunta", label: "Pregunta", widget: "string" }
               - { name: "respuesta", label: "Respuesta", widget: "text" }
