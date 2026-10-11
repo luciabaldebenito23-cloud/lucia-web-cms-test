@@ -1,7 +1,7 @@
 ---
 slug: placeholder
 orden: 11
-title: Propiedad de prueba modificada
+title: Propiedad de prueba - edición 2
 seo_description: ''
 operacion: venta
 tipo: casa
@@ -17,8 +17,8 @@ apta_credito: ''
 meta:
   - hihik
 fotos:
-- src: /img/uploads/pasted-image-1790979790863.png
-  alt: '65656'
+  - src: /img/uploads/pasted-image-1790979790863.png
+    alt: '65656'
 specs:
   - label: '25131'
     value: '4546'
@@ -26,6 +26,7 @@ servicios:
   - '5454'
 servicios_nota: ''
 mapa_query: ''
+mapa_titulo: ''
 cta_titulo: ''
 cta_texto: ''
 cta_boton: ''
