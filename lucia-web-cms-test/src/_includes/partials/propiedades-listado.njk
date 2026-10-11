@@ -1,0 +1,85 @@
+{% from "partials/macros.njk" import propertyCard %}
+{% set propiedadesFiltradas = collections.propiedades | whereEq("operacion", operacionPagina) %}
+<section class="section" id="propiedades" data-operacion-fixed="{{ operacionPagina }}">
+  <div class="container">
+    <a href="/#propiedades" class="link-arrow back-link">← Volver a Propiedades</a>
+
+    <div class="section-head">
+      <p class="eyebrow eyebrow-purple">Propiedades</p>
+      <h1>{{ tituloPagina }}</h1>
+      <p class="section-sub">{{ subtituloPagina }}</p>
+    </div>
+
+    <div class="filters-bar" role="group" aria-label="Filtros de propiedades">
+      <div class="filter-group" role="group" aria-label="Filtrar por tipo de propiedad">
+        <button class="filter-chip is-active" data-filter-group="tipo" data-filter-value="todos">Todos los tipos</button>
+        <button class="filter-chip" data-filter-group="tipo" data-filter-value="casa">Casas</button>
+        <button class="filter-chip" data-filter-group="tipo" data-filter-value="departamento">Departamentos</button>
+      </div>
+      <button type="button" class="btn btn-outline filters-toggle" id="filtersToggle" aria-expanded="false" aria-controls="advancedFilters">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/><circle cx="9" cy="6" r="1.6" fill="currentColor" stroke="none"/><circle cx="15" cy="12" r="1.6" fill="currentColor" stroke="none"/><circle cx="7" cy="18" r="1.6" fill="currentColor" stroke="none"/></svg>
+        <span class="filters-toggle-label">Más filtros</span>
+        <svg class="icon icon-chevron" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+    </div>
+
+    <div class="advanced-filters" id="advancedFilters" hidden>
+      <div class="field">
+        <label for="filterTipo">Tipo de propiedad</label>
+        <select id="filterTipo">
+          <option value="todos">Todos</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="filterEstado">Estado</label>
+        <select id="filterEstado">
+          <option value="todos">Todos</option>
+        </select>
+      </div>
+      <div class="field field-price-range">
+        <label for="filterPrecioMin">Precio</label>
+        <div class="price-range-inputs">
+          <input type="number" id="filterPrecioMin" min="0" placeholder="Desde" inputmode="numeric">
+          <span aria-hidden="true">—</span>
+          <input type="number" id="filterPrecioMax" min="0" placeholder="Hasta" inputmode="numeric">
+        </div>
+        <p class="field-hint">{{ precioHint }}</p>
+      </div>
+      <div class="field">
+        <label for="filterAptaCredito">Apta crédito</label>
+        <select id="filterAptaCredito">
+          <option value="indistinto">Indistinto</option>
+          <option value="si">Sí</option>
+          <option value="no">No</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="filterBarrio">Barrio</label>
+        <select id="filterBarrio">
+          <option value="todos">Todos</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="filterCiudad">Ciudad</label>
+        <select id="filterCiudad">
+          <option value="todos">Todos</option>
+        </select>
+      </div>
+      <div class="advanced-filters-actions">
+        <button type="button" class="btn btn-outline btn-sm" id="filtersClear">Limpiar filtros</button>
+      </div>
+    </div>
+
+    <div class="cards-grid properties-grid" id="propertiesGrid">
+      {% for item in propiedadesFiltradas %}
+        {{ propertyCard(item.data) }}
+      {% endfor %}
+    </div>
+
+    <p class="empty-state" id="propertiesEmpty"{% if propiedadesFiltradas.length %} hidden{% endif %}>{{ mensajeVacio }}</p>
+
+    <div class="section-cta">
+      <a href="/#tasaciones" class="btn btn-outline">{{ ctaTexto }}</a>
+    </div>
+  </div>
+</section>
