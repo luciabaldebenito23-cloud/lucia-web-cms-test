@@ -1,8 +1,20 @@
 name: Publicar sitio
 
+# Se ejecuta cada vez que se sube un cambio a main — ya sea editado a mano o
+# guardado desde el panel de edición (Sveltia CMS hace un commit normal a
+# este mismo repositorio). Arma el sitio con Eleventy y lo publica en
+# GitHub Pages.
+#
+# También se ejecuta solo, una vez por día (6:00 de la mañana, hora de
+# Argentina), sin que nadie tenga que tocar nada. Esto es lo que permite
+# programar una nota de blog con fecha futura: aunque no haya ningún cambio
+# nuevo ese día, este build diario "revisa" las fechas y publica las notas
+# que ya les tocaba salir.
 on:
   push:
     branches: [main]
+  schedule:
+    - cron: "0 9 * * *" # 09:00 UTC = 06:00 Argentina (no tiene horario de verano)
   workflow_dispatch:
 
 permissions:
