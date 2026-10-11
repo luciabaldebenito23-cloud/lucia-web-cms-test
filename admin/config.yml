@@ -115,7 +115,7 @@ collections:
     fields:
       - { name: "slug", label: "Identificador (para la URL)", widget: "string", hint: "Sin espacios ni tildes. No lo cambies después de publicado o se rompe el link." }
       - { name: "orden", label: "Orden", widget: "number", default: 10, hint: "Los números más chicos aparecen primero en el blog." }
-           - { name: "fecha_publicacion", label: "Programar publicación para una fecha futura (opcional)", widget: "datetime", required: false, time_format: false, format: "YYYY-MM-DD", date_format: "DD/MM/YYYY", hint: "Dejalo vacío para publicar ya. Si elegís una fecha futura, la nota queda totalmente oculta (ni por el link directo) hasta esa fecha — el sitio se revisa y publica solo, una vez por día." }
+      - { name: "fecha_publicacion", label: "Programar publicación para una fecha futura (opcional)", widget: "datetime", required: false, time_format: false, format: "YYYY-MM-DD", date_format: "DD/MM/YYYY", hint: "Dejalo vacío para publicar ya. Si elegís una fecha futura, la nota queda totalmente oculta (ni por el link directo) hasta esa fecha — el sitio se revisa y publica solo, una vez por día." }
       - { name: "title", label: "Título de la nota", widget: "string", hint: "Se usa como título del artículo y también en la tarjeta del blog." }
       - { name: "seo_titulo", label: "Título corto para buscadores (opcional)", widget: "string", required: false, hint: "Si lo dejás vacío, se usa el título de arriba. Usalo solo si el título es muy largo para el buscador." }
       - { name: "seo_description", label: "Descripción para buscadores (SEO)", widget: "text", required: false }
