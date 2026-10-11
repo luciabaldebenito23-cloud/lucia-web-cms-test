@@ -17,8 +17,8 @@ apta_credito: ''
 meta:
   - hihik
 fotos:
-    - src: /img/uploads/pasted-image-1790979790863.png
-    alt: '65656'
+- src: /img/uploads/pasted-image-1790979790863.png
+  alt: '65656'
 specs:
   - label: '25131'
     value: '4546'
