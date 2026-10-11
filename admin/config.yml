@@ -2,14 +2,14 @@
 
 backend:
   name: github
-  repo: luciabaldebenito23-cloud/lucia-web-cms-test
+  repo: luciabaldebenito23-cloud/lucia-baldebenito-web
   branch: main
   base_url: https://sveltia-cms-auth.luciabaldebenito23.workers.dev
 
 media_folder: "img/uploads"
 public_folder: "/img/uploads"
 
-site_url: "https://luciabaldebenito23-cloud.github.io/lucia-web-cms-test"
+site_url: "https://luciabaldebenito.com.ar"
 
 editor:
   preview: false
@@ -80,9 +80,11 @@ collections:
       - name: "fotos"
         label: "Fotos"
         widget: "list"
-        summary: "{{fields.foto}}"
-        field: { name: "foto", label: "Foto", widget: "image" }
-      - { name: "foto_alt", label: "Texto alternativo de la foto principal", widget: "string", hint: "Describí la foto para accesibilidad y buscadores." }
+        summary: "{{fields.alt}}"
+        hint: "La primera foto de la lista es la que se usa como foto principal."
+        fields:
+          - { name: "src", label: "Foto", widget: "image" }
+          - { name: "alt", label: "Texto alternativo (describí la foto para accesibilidad y buscadores)", widget: "string" }
       - name: "specs"
         label: "Ficha técnica"
         widget: "list"
@@ -96,6 +98,7 @@ collections:
         field: { name: "item", label: "Servicio", widget: "string" }
       - { name: "servicios_nota", label: "Aclaración sobre servicios", widget: "text", required: false }
       - { name: "mapa_query", label: "Dirección para el mapa de Google", widget: "string", required: false }
+      - { name: "mapa_titulo", label: "Título del mapa (accesibilidad)", widget: "string", required: false, hint: "Ej: Mapa de ubicación en Loteo La Reserva, Bella Vista Sur. Si lo dejás vacío, se usa 'Mapa de ubicación en' + el barrio." }
       - { name: "cta_titulo", label: "Título del bloque de contacto (opcional)", widget: "string", required: false }
       - { name: "cta_texto", label: "Texto del bloque de contacto (opcional)", widget: "text", required: false }
       - { name: "cta_boton", label: "Texto del botón de contacto (opcional)", widget: "string", required: false }
@@ -112,9 +115,8 @@ collections:
     fields:
       - { name: "slug", label: "Identificador (para la URL)", widget: "string", hint: "Sin espacios ni tildes. No lo cambies después de publicado o se rompe el link." }
       - { name: "orden", label: "Orden", widget: "number", default: 10, hint: "Los números más chicos aparecen primero en el blog." }
-      - { name: "title", label: "Título de la nota (encabezado dentro del artículo)", widget: "string" }
+      - { name: "title", label: "Título de la nota", widget: "string", hint: "Se usa como título del artículo y también en la tarjeta del blog." }
       - { name: "seo_titulo", label: "Título corto para buscadores (opcional)", widget: "string", required: false, hint: "Si lo dejás vacío, se usa el título de arriba. Usalo solo si el título es muy largo para el buscador." }
-      - { name: "card_titulo", label: "Título corto para la tarjeta (opcional)", widget: "string", required: false, hint: "El que se ve en la grilla del blog y en 'Seguí leyendo'. Si lo dejás vacío, se usa el título de arriba." }
       - { name: "seo_description", label: "Descripción para buscadores (SEO)", widget: "text", required: false }
       - { name: "categoria", label: "Categoría", widget: "string", hint: "Ej: Nota para propietarios / Nota técnica / LB Consultora" }
       - name: "eyebrow_color"
@@ -137,19 +139,3 @@ collections:
       - { name: "author_name", label: "Nombre del autor/a", widget: "string", default: "Lucía Baldebenito" }
       - { name: "author_role", label: "Rol del autor/a", widget: "string", required: false }
       - { name: "body", label: "Contenido de la nota", widget: "markdown" }
-
-  - name: "faq"
-    label: "Preguntas frecuentes"
-    files:
-      - name: "preguntas_frecuentes"
-        label: "Preguntas frecuentes (sección del inicio)"
-        file: "src/_data/faq.json"
-        description: "Estas preguntas se muestran en el sitio Y en el código invisible que ayuda a que los buscadores (Google, ChatGPT, etc.) citen bien tu información. Si cambiás una respuesta acá, cambia en los dos lugares a la vez — así nunca quedan desincronizadas."
-        fields:
-          - name: "preguntas"
-            label: "Preguntas"
-            widget: "list"
-            summary: "{{fields.pregunta}}"
-            fields:
-              - { name: "pregunta", label: "Pregunta", widget: "string" }
-              - { name: "respuesta", label: "Respuesta", widget: "text" }

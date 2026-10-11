@@ -1,0 +1,84 @@
+---
+layout: layouts/base.njk
+navActive: propiedades
+eleventyComputed:
+  pageTitle: "{{ title | safe }} | Lucía Baldebenito"
+  description: "{{ (seo_description or title) | safe }}"
+  permalink: "propiedades/{{ slug }}.html"
+  ogImage: "/{{ fotos[0].src }}"
+---
+{% from "partials/macros.njk" import operacionLabel, precioTexto %}
+<article class="section property-page">
+  <div class="container article-container">
+    <a href="/#propiedades" class="link-arrow back-link">← Volver a Propiedades</a>
+
+    <p class="eyebrow eyebrow-purple">{{ operacionLabel(operacion) }} · {{ tipo | capitalize }}</p>
+    <h1>{{ title }}</h1>
+    <p class="property-address">
+      <svg class="icon icon-navy" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      {{ direccion }}
+    </p>
+    <p class="property-page-price">{{ precioTexto({precio: precio, moneda: moneda, precio_sufijo: precio_sufijo}) }}</p>
+
+    <div class="property-gallery">
+      <div class="img-placeholder has-photo property-gallery-main">
+        <img src="/{{ fotos[0].src }}" alt="{{ fotos[0].alt or title }}" loading="lazy">
+      </div>
+      {% if fotos.length > 1 %}
+      <div class="property-gallery-thumbs">
+        {% for foto in fotos %}
+          {% if not loop.first %}
+          <div class="img-placeholder has-photo">
+            <img src="/{{ foto.src }}" alt="{{ foto.alt or title }}" loading="lazy">
+          </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+
+    {% if specs.length %}
+    <div class="spec-grid">
+      {% for spec in specs %}
+      <div class="spec-item">
+        <span>{{ spec.label }}</span>
+        <strong>{{ spec.value }}</strong>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <h2 class="property-section-title">Descripción</h2>
+    <div class="article-body">
+      {{ content | safe }}
+    </div>
+
+    {% if servicios.length %}
+    <h2 class="property-section-title">Servicios en la zona</h2>
+    <ul class="check-list">
+      {% for s in servicios %}
+      <li><svg class="icon icon-purple" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg> {{ s }}</li>
+      {% endfor %}
+    </ul>
+    {% if servicios_nota %}<p class="field-hint">{{ servicios_nota }}</p>{% endif %}
+    {% endif %}
+
+    {% if mapa_query %}
+    <h2 class="property-section-title">Ubicación</h2>
+    <div class="map-placeholder has-map">
+      <iframe
+        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDvWjcudrtv-Q-zMLihwwFXoLGc8LUgIlE&q={{ mapa_query | urlencode }}"
+        loading="lazy"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+        title="{{ mapa_titulo or ('Mapa de ubicación en ' + barrio) }}"></iframe>
+    </div>
+    {% endif %}
+
+    <div class="card article-cta">
+      <h3>{{ cta_titulo or "¿Te interesa esta propiedad?" }}</h3>
+      <p>{{ cta_texto or "Escribime para coordinar una visita o resolver cualquier duda." }}</p>
+      <a href="/#contacto" class="btn btn-primary">{{ cta_boton or "Consultar por esta propiedad" }}</a>
+    </div>
+  </div>
+</article>

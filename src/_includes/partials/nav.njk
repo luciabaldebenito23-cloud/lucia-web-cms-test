@@ -1,0 +1,66 @@
+<header class="site-header" id="site-header">
+  <div class="container header-inner">
+    <a href="/#inicio" class="logo" aria-label="Lucía Baldebenito, ir al inicio">
+      <span class="logo-mark" aria-hidden="true">Lb</span>
+      <span class="logo-text">
+        <span class="logo-name">Lucía Baldebenito</span>
+        <span class="logo-sub">Corredora Inmobiliaria</span>
+      </span>
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primaryNav" aria-label="Abrir menú de navegación">
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+    </button>
+
+    <nav class="primary-nav" id="primaryNav" aria-label="Navegación principal">
+      <ul>
+        <li><a href="/#inicio" class="nav-link{{ ' is-active' if navActive == 'inicio' }}">Inicio</a></li>
+        <li><a href="/#nosotros" class="nav-link{{ ' is-active' if navActive == 'sobre-mi' }}">Sobre mí</a></li>
+        <li class="nav-dropdown">
+          <div class="nav-dropdown-head">
+            <a href="/#servicios" class="nav-link{{ ' is-active' if navActive == 'servicios' }}">Servicios</a>
+            <button type="button" class="nav-dropdown-caret" aria-expanded="false" aria-label="Mostrar más opciones de Servicios">
+              <svg class="icon nav-caret" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+          </div>
+          <ul class="nav-dropdown-menu">
+            <li class="nav-dropdown">
+              <div class="nav-dropdown-head">
+                <a href="/#consultoria" class="nav-link">Consultoría</a>
+                <button type="button" class="nav-dropdown-caret" aria-expanded="false" aria-label="Mostrar más opciones de Consultoría">
+                  <svg class="icon nav-caret" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                </button>
+              </div>
+              <ul class="nav-dropdown-menu">
+                <li><a href="/#precios" class="nav-link">Planes</a></li>
+                <li><a href="/#ebook" class="nav-link">eBook</a></li>
+                <li><a href="/#descargables" class="nav-link">Descargables</a></li>
+              </ul>
+            </li>
+            <li><a href="/#administracion-consorcios" class="nav-link">Administración de consorcios</a></li>
+            <li><a href="/#tasaciones" class="nav-link">Tasaciones</a></li>
+          </ul>
+        </li>
+        <li class="nav-dropdown">
+          <div class="nav-dropdown-head">
+            <a href="/#propiedades" class="nav-link{{ ' is-active' if navActive == 'propiedades' }}">Propiedades</a>
+            <button type="button" class="nav-dropdown-caret" aria-expanded="false" aria-label="Mostrar más opciones de Propiedades">
+              <svg class="icon nav-caret" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+          </div>
+          <ul class="nav-dropdown-menu">
+            <li><a href="/propiedades/ventas.html" class="nav-link{{ ' is-active' if propSubActive == 'ventas' }}">Ventas</a></li>
+            <li><a href="/propiedades/alquileres.html" class="nav-link{{ ' is-active' if propSubActive == 'alquileres' }}">Alquileres</a></li>
+            <li><a href="/propiedades/emprendimientos.html" class="nav-link{{ ' is-active' if propSubActive == 'emprendimientos' }}">Emprendimientos</a></li>
+          </ul>
+        </li>
+        <li><a href="/#blog" class="nav-link{{ ' is-active' if navActive == 'blog' }}">Blog</a></li>
+        <li><a href="/#preguntas-frecuentes" class="nav-link{{ ' is-active' if navActive == 'preguntas-frecuentes' }}">Preguntas frecuentes</a></li>
+        <li><a href="/#contacto" class="nav-link{{ ' is-active' if navActive == 'contacto' }}">Contacto</a></li>
+      </ul>
+      <a href="/#tasaciones" class="btn btn-primary nav-cta">Pedí tu tasación</a>
+    </nav>
+  </div>
+</header>

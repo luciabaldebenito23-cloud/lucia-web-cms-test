@@ -1,0 +1,68 @@
+---
+layout: layouts/base.njk
+navActive: blog
+ogType: article
+eleventyComputed:
+  pageTitle: "{{ (seo_titulo or title) | safe }} | Blog de Lucía Baldebenito"
+  description: "{{ (seo_description or title) | safe }}"
+  permalink: "blog/{{ slug }}.html"
+  ogImage: "/{{ portada }}"
+---
+{% from "partials/macros.njk" import blogCard %}
+<article class="section article-page">
+  <div class="container article-container">
+    <a href="/#blog" class="link-arrow back-link">← Volver al blog</a>
+
+    <p class="eyebrow eyebrow-{{ eyebrow_color or 'purple' }}">{{ categoria }}</p>
+    <h1>{{ title }}</h1>
+    <p class="article-meta">{{ autor }} · {{ lectura }} de lectura</p>
+
+    {% if portada %}
+    <div class="img-placeholder has-photo article-hero">
+      <img src="/{{ portada }}" alt="{{ hero_alt or portada_alt or title }}" loading="lazy">
+    </div>
+    {% else %}
+    <div class="img-placeholder article-hero" role="img" aria-label="{{ hero_alt or title }}"></div>
+    {% endif %}
+
+    <div class="article-body">
+      {{ content | safe }}
+    </div>
+
+    {% if cta_titulo %}
+    <div class="card article-cta">
+      <h3>{{ cta_titulo }}</h3>
+      <p>{{ cta_texto }}</p>
+      <a href="{{ cta_link }}" class="btn {{ cta_clase or 'btn-primary' }}">{{ cta_boton }}</a>
+    </div>
+    {% endif %}
+
+    <div class="author-box">
+      {% if author_photo %}
+      <div class="img-placeholder has-photo">
+        <img src="/{{ author_photo }}" alt="Foto de {{ author_name }}" loading="lazy">
+      </div>
+      {% else %}
+      <div class="img-placeholder" role="img" aria-label="Isotipo de {{ author_name }}"></div>
+      {% endif %}
+      <div>
+        <strong>{{ author_name }}</strong>
+        <span>{{ author_role }}</span>
+      </div>
+    </div>
+  </div>
+</article>
+
+<section class="section section-tint">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow eyebrow-purple">Seguí leyendo</p>
+      <h2>Más notas del blog</h2>
+    </div>
+    <div class="cards-grid blog-grid">
+      {% for post in collections.blogposts | relatedPosts(slug, 3) %}
+        {{ blogCard(post.data) }}
+      {% endfor %}
+    </div>
+  </div>
+</section>

@@ -1,8 +1,32 @@
 {
   "preguntas": [
     {
-      "pregunta": "Pregunta de prueba",
-      "respuesta": "Respuesta de prueba para validar el panel de edicion."
+      "pregunta": "¿En qué zonas trabajás?",
+      "respuesta": "Trabajo en Comodoro Rivadavia y Rada Tilly, Chubut. Si tu propiedad está en alguna de estas zonas, te puedo ayudar a venderla, alquilarla o tasarla."
+    },
+    {
+      "pregunta": "¿Qué incluye una tasación?",
+      "respuesta": "Un informe con el valor real de mercado, comparables de tu zona y una recomendación clara sobre vender, alquilar o esperar, con el porqué explicado por escrito. No implica ningún compromiso de exclusividad."
+    },
+    {
+      "pregunta": "¿Puedo autogestionar mi alquiler sin depender de una inmobiliaria?",
+      "respuesta": "Sí. A través de mi consultoría para propietarios te doy el método, las plantillas y el criterio profesional para publicar, seleccionar inquilino/a, armar el contrato y hacer el seguimiento del cobro vos mismo/a, con respaldo."
+    },
+    {
+      "pregunta": "¿Qué tipo de propiedades manejás?",
+      "respuesta": "Casas, departamentos y terrenos, en operaciones de venta, alquiler y emprendimientos. Podés filtrar por tipo y zona en la sección de propiedades."
+    },
+    {
+      "pregunta": "¿Hacés administración de consorcios?",
+      "respuesta": "Sí. Me ocupo de la liquidación y cobro de expensas con rendición mensual, el pago y seguimiento de proveedores, el mantenimiento preventivo, la gestión de personal con ART, la convocatoria y actas de asambleas, la gestión de seguros y la atención de reclamos."
+    },
+    {
+      "pregunta": "¿Cuánta experiencia tenés como corredora inmobiliaria?",
+      "respuesta": "Más de cinco años acompañando a propietarios en Comodoro Rivadavia y Rada Tilly, con un método propio para que cada decisión —vender, alquilar o esperar— se tome con datos y no con intuición."
+    },
+    {
+      "pregunta": "¿Cómo te contacto?",
+      "respuesta": "Por WhatsApp al +54 297 535-7512, por email a inmobiliarialb.cr@gmail.com, o completando el formulario de contacto de esta página. Te respondo yo misma."
     }
   ]
 }
