@@ -1,3 +1,5 @@
+const isPublished = require("./isPublished.js");
+
 module.exports = function (eleventyConfig) {
   // Copy static assets straight through to the output folder. These live at
   // the repo root (not under src/) so there's a single copy of every image,
@@ -26,8 +28,21 @@ module.exports = function (eleventyConfig) {
     return collectionApi.getFilteredByGlob("src/content/propiedades/*.md").filter(notPlaceholder).sort(byOrden);
   });
 
+  // Excluye también las notas programadas para una fecha futura: no
+  // aparecen en el blog ni en "Seguí leyendo" hasta que llega el día. Como
+  // su permalink además se desactiva (ver blog.11tydata.js), tampoco se
+  // genera la página individual, así que ni por el link directo son
+  // visibles antes de tiempo.
+  function isPublishedNow(item) {
+    return isPublished(item.data.fecha_publicacion);
+  }
+
   eleventyConfig.addCollection("blogposts", function (collectionApi) {
-    return collectionApi.getFilteredByGlob("src/content/blog/*.md").filter(notPlaceholder).sort(byOrden);
+    return collectionApi
+      .getFilteredByGlob("src/content/blog/*.md")
+      .filter(notPlaceholder)
+      .filter(isPublishedNow)
+      .sort(byOrden);
   });
 
   eleventyConfig.addFilter("whereTrue", function (arr, key) {

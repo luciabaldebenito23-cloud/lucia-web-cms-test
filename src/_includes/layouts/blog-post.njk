@@ -5,7 +5,6 @@ ogType: article
 eleventyComputed:
   pageTitle: "{{ (seo_titulo or title) | safe }} | Blog de Lucía Baldebenito"
   description: "{{ (seo_description or title) | safe }}"
-  permalink: "blog/{{ slug }}.html"
   ogImage: "/{{ portada }}"
 ---
 {% from "partials/macros.njk" import blogCard %}
