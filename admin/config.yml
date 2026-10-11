@@ -2,7 +2,7 @@
 
 backend:
   name: github
-  repo: repo: luciabaldebenito23-cloud/lucia-web-cms-test
+  repo: luciabaldebenito23-cloud/lucia-web-cms-test
   branch: main
   base_url: https://sveltia-cms-auth.luciabaldebenito23.workers.dev
 
