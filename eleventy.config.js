@@ -6,6 +6,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ js: "js" });
   eleventyConfig.addPassthroughCopy({ fonts: "fonts" });
   eleventyConfig.addPassthroughCopy({ img: "img" });
+  eleventyConfig.addPassthroughCopy({ admin: "admin" });
 
   // Sort helper: newest-first isn't needed yet (dates aren't tracked per
   // property/post), so collections are ordered by the "orden" front-matter
