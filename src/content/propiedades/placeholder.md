@@ -1,6 +1,6 @@
 ---
 slug: placeholder
-orden: 10
+orden: 11
 title: Propiedad de prueba modificada
 seo_description: ''
 operacion: venta
